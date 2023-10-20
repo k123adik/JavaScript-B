@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Descending Sort</title>
+</head>
+<body>
+    <h1>Descending Sort</h1>
+
+    <p>Enter numbers separated by commas:</p>
+    <input type="text" id="inputArray" placeholder="e.g., 5, 2, 9, 1, 5, 6">
+    <button onclick="sortDescending()">Sort Descending</button>
+
+    <p>Sorted Array (Descending):</p>
+    <p id="outputArray"></p>
+
+    <script>
+        function sortDescending() {
+            const inputArray = document.getElementById("inputArray").value;
+            const numbers = inputArray.split(',').map(Number);
+
+            // Check for non-numeric values
+            if (numbers.some(isNaN)) {
+                document.getElementById("outputArray").textContent = "Invalid input. Please enter a list of numbers.";
+                return;
+            }
+
+            // Sort the array in descending order
+            for (let i = 0; i < numbers.length - 1; i++) {
+                for (let j = 0; j < numbers.length - 1 - i; j++) {
+                    if (numbers[j] < numbers[j + 1]) {
+                        const temp = numbers[j];
+                        numbers[j] = numbers[j + 1];
+                        numbers[j + 1] = temp;
+                    }
+                }
+            }
+
+            document.getElementById("outputArray").textContent = numbers.join(', ');
+        }
+    </script>
+</body>
+</html>
